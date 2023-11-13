@@ -1,0 +1,13 @@
+# packages
+node_modules
+
+# artifacts
+dist
+
+# secrets
+.env*
+!.env.example
+
+# lock files other than pnpm
+yarn.lock
+package-lock.json
