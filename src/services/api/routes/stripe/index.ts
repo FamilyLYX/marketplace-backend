@@ -1,10 +1,12 @@
-import { Router } from "express";
-import { handleCreateStripeAccount, handleGetAccountOnboardingLink } from "./handlers";
+import { Router } from 'express';
+import { handleCreateCheckoutSession, handleCreateStripeAccount, handleGetAccountOnboardingLink } from './handlers';
 
-const stripeRouter = Router()
+const stripeRouter = Router();
 
-stripeRouter.get('/onboarding', handleGetAccountOnboardingLink)
+stripeRouter.get('/onboarding', handleGetAccountOnboardingLink);
 
-stripeRouter.post('/account', handleCreateStripeAccount)
+stripeRouter.post('/account', handleCreateStripeAccount);
+
+stripeRouter.post('/checkout', handleCreateCheckoutSession);
 
 export default stripeRouter;
