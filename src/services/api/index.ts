@@ -1,31 +1,32 @@
-import express from "express";
-import { PORT } from "../../config/env";
-import router from "./routes";
-import cors from "cors";
+import express from 'express';
+import { PORT } from '../../config/env';
+import router from './routes';
+import cors from 'cors';
 
 class ApiService {
-  #port: string;
-  #app;
+	#port: string;
+	#app;
 
-  constructor(port: string) {
-    this.#port = port;
-    this.#app = express();
-  }
+	constructor(port: string) {
+		this.#port = port;
+		this.#app = express();
+	}
 
-  init() {
-    this.#registerMiddlewares();
-    this.#registerRoutes();
+	init() {
+		this.#registerMiddlewares();
+		this.#registerRoutes();
 
-    this.#app.listen(this.#port, () => console.log(`listening for connections on -- :${this.#port}`))
-  }
+		this.#app.listen(this.#port, () => console.log(`listening for connections on -- :${this.#port}`));
+	}
 
-  #registerMiddlewares() {
-    this.#app.use(cors());
-  }
+	#registerMiddlewares() {
+		this.#app.use(cors());
+		this.#app.use(express.json());
+	}
 
-  #registerRoutes() {
-    this.#app.use(router);
-  }
+	#registerRoutes() {
+		this.#app.use(router);
+	}
 }
 
 export const apiService = new ApiService(PORT);
